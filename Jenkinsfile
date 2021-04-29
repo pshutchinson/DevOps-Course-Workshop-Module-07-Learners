@@ -35,61 +35,54 @@ pipeline {
                 }
             }
         }
-        stage('NPM Install') {
+        stage {
             agent {
                 docker { 
                     image 'node:14-alpine'
                     reuseNode true
                 }
             }
-            steps{
-                script {
-                    sh 'cd DotnetTemplate.Web'
-                    sh 'npm install'
+            stages {
+                stage('NPM Install') {
+                    steps{
+                        script {
+                            dir("DotnetTemplate.Web") {
+                                sh 'npm install'
+                            }
+                        }
+                    }
+                }
+                stage('NPM Build') {
+                    steps{
+                        script {
+                            dir("DotnetTemplate.Web") {
+                                sh 'npm run build'
+                            }
+                        }
+                    }
+                }
+                stage('NPM Test') {
+                    steps{
+                        script {
+                            dir("DotnetTemplate.Web") {
+                                sh 'npm t'
+                            }
+                        }
+                    }
+                }
+                stage('NPM Lint') {
+                    steps{
+                        script {
+                            dir("DotnetTemplate.Web") {
+                                sh 'npm run lint'
+                            }
+                            sh 'cd DotnetTemplate.Web'
+                            sh 'npm run lint'
+                        }
+                    }
                 }
             }
         }
-        stage('NPM Build') {
-            agent {
-                docker { 
-                    image 'node:14-alpine'
-                    reuseNode true
-                }
-            }
-            steps{
-                script {
-                    sh 'cd DotnetTemplate.Web'
-                    sh 'npm run build'
-                }
-            }
-        }
-        stage('NPM Test') {
-            agent {
-                docker { 
-                    image 'node:14-alpine'
-                    reuseNode true
-                }
-            }
-            steps{
-                script {
-                    sh 'cd DotnetTemplate.Web'
-                    sh 'npm t'
-                }
-            }
-        }
-        stage('NPM Lint') {
-            agent {
-                docker { 
-                    image 'node:14-alpine'
-                    reuseNode true
-                }
-            }
-            steps{
-                script {
-                    sh 'cd DotnetTemplate.Web'
-                    sh 'npm run lint'
-                }
-            }
-        }
+        
     }
 }
