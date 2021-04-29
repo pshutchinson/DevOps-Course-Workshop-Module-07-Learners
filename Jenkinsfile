@@ -12,7 +12,6 @@ pipeline {
         stage('DotNet Build') {
             agent {
                 docker { image 'mcr.microsoft.com/dotnet/sdk:5.0'}
-                reuseNode
             }
             steps{
                 script {
@@ -23,7 +22,6 @@ pipeline {
         stage('DotNet Test') {
             agent {
                 docker { image 'mcr.microsoft.com/dotnet/sdk:5.0'}
-                reuseNode
             }
             steps{
                 script {
@@ -34,7 +32,6 @@ pipeline {
         stage('NPM Install') {
             agent {
                 docker { image 'node:14-alpine'}
-                reuseNode
             }
             steps{
                 script {
@@ -46,7 +43,6 @@ pipeline {
         stage('NPM Build') {
             agent {
                 docker { image 'node:14-alpine'}
-                reuseNode
             }
             steps{
                 script {
@@ -58,7 +54,6 @@ pipeline {
         stage('NPM Test') {
             agent {
                 docker { image 'node:14-alpine'}
-                reuseNode
             }
             steps{
                 script {
@@ -70,7 +65,6 @@ pipeline {
         stage('NPM Lint') {
             agent {
                 docker { image 'node:14-alpine'}
-                reuseNode
             }
             steps{
                 script {
