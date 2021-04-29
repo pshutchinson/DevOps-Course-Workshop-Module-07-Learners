@@ -8,7 +8,7 @@ pipeline {
         }
         stage('DotNet Build') {
             agent {
-                docker { image 'microsoft-dotnet-core-sdk'}
+                docker { image 'mcr.microsoft.com/dotnet/sdk:5.0'}
             }
             steps{
                 script {
@@ -18,7 +18,7 @@ pipeline {
         }
         stage('DotNet Test') {
             agent {
-                docker { image 'microsoft-dotnet-core-sdk'}
+                docker { image 'mcr.microsoft.com/dotnet/sdk:5.0'}
             }
             steps{
                 script {
