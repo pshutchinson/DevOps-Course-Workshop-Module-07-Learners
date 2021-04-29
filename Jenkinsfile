@@ -35,7 +35,7 @@ pipeline {
                 }
             }
         }
-        stage {
+        stage ('NPM') {
             agent {
                 docker { 
                     image 'node:14-alpine'
