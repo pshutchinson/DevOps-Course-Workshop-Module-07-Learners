@@ -11,11 +11,11 @@ jobs:
       run: dotnet build
     - name: DotNet Test
       run: dotnet test
-
-
-    # dotnet build
-    # dotnet test
-    # npm install
-    # npm run build
-    # npm t
-    # npm run lint
+    - name: NPM Install
+      run: npm install
+    - name: NPM Build
+      run: npm run build
+    - name: NPM Test
+      run: npm t
+    - name: NPM Lint
+      run: npm run lint
