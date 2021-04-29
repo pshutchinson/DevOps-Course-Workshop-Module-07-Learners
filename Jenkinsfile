@@ -76,8 +76,6 @@ pipeline {
                             dir("DotnetTemplate.Web") {
                                 sh 'npm run lint'
                             }
-                            sh 'cd DotnetTemplate.Web'
-                            sh 'npm run lint'
                         }
                     }
                 }
