@@ -11,9 +11,10 @@ jobs:
       run: dotnet build
     - name: DotNet Test
       run: dotnet test
-    - name: NPM Install
+    - name: NPM Folder
       run: cd DotnetTemplate.Web
-           npm install
+    - name: NPM Install
+      run: npm install
     - name: NPM Build
       run: npm run build
     - name: NPM Test
